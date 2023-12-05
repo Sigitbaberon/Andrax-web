@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+ <script src="https://cdn.rawgit.com/michalsnik/aos/2.3.1/dist/aos.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"  />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <!-- Bootstrap default styles -->
+  
+ <style>
+  @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css');
+
+    body {
+      padding-top: 56px; 
+      
+      margin: 0;
+      
+      background-image: radial-gradient(circle at 50% 50%, #003159 0, #00305b 8.33%, #002e5c 16.67%, #002c5c 25%, #002b5c 33.33%, #00285b 41.67%, #132659 50%, #222356 58.33%, #2d2053 66.67%, #361d50 75%, #3d1a4b 83.33%, #431747 91.67%, #481341 100%);
+      
+    }
+    
+
+    nav.navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: #000033 !important; 
+    }
+
+    nav.navbar a.navbar-brand {
+      display: flex;
+      align-items: center;
+    }
+
+    nav.navbar a.navbar-brand img {
+      margin-right: 10px; 
+      width: 80px; 
+      height: 50px; 
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav.navbar a.navbar-brand:hover img {
+      transform: scale(1.1); 
+    }
+
+    .navbar .btn-login {
+      background-color: #FF8000; 
+      color: #fff; 
+      padding: 5px 10px; 
+      border: none;
+      border-radius: 10px; 
+    }
+
+    .navbar .btn-login:hover {
+      background-color: #FF8000; 
+    }
+
+    /* Custom styles for the carousel */
+    .carousel {
+      margin-top: 20px;
+    }
+
+    .carousel-inner {
+      overflow: hidden;
+    }
+
+    .carousel-item {
+      transition: transform 1s ease-in-out;
+    }
+    
+    .carousel-inner img {
+  width: 100%;
+  height: auto;
+}
+/* Custom styles for recommendation and trending */
+    .recommendation {
+      font-size: 24px;
+      color: #ff8000;
+      margin-top: 20px;
+    }
+
+   
+   
+
+/* Aturan gaya warna dan tata letak konten sesuai dengan website Anda */
+
+.games-section {
+  background-color: /* sesuaikan warna latar belakang sesuai kebutuhan */;
+  padding: 50px 0; /* Sesuaikan padding sesuai kebutuhan */
+  color: white /* sesuaikan warna teks sesuai kebutuhan */;
+}
+
+.filter-options {
+  margin-bottom: 20px;
+  /* Aturan tata letak atau warna untuk filter-options sesuai kebutuhan */
+}
+
+#sortBy {
+  /* Aturan gaya untuk dropdown atau pilihan sortir sesuai kebutuhan */
+}
+
+
+
+
+
+
+.game-item p.price {
+  font-weight: bold;
+  /* Aturan gaya untuk harga sesuai kebutuhan */
+}
+
+.game-item .rating {
+  /* Aturan gaya untuk penilaian atau rating sesuai kebutuhan */
+}
+
+/* Tambahan aturan CSS sesuai kebutuhan desain Anda */
+
+/* Aturan tambahan untuk tata letak item di dalam game-grid */
+.game-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  
+}
+
+.game-item {
+  flex: 1 1 calc(33.33% - 15px); /* Tiga item per baris, dengan jarak 20px */
+  max-width: calc(33.33% - 15px); /* Hindari item melebihi tiga per baris */
+  background-color: #2F456C/* Sesuaikan warna latar belakang item sesuai kebutuhan */;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+ border:solid #ddd;
+  /* Aturan gaya untuk tampilan game item sesuai kebutuhan */
+  
+}
+
+/* Atur lebar gambar agar tetap proporsional */
+.game-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px; /* Jika gambar memerlukan sudut melengkung */
+  border: solid #ff8000;
+}
+
+/* Aturan untuk tombol Top Up */
+        .game-item button {
+            background-color: #FF8000;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 10px;
+        }
+
+        .game-item button:hover {
+            background-color: #FFA033;
+        }
+
+/* Gaya untuk menyembunyikan game-item */
+.game-item.hidden {
+  display: none;
+}
+
+
+
+
+  /* ... (existing styles) ... */
+
+.modern-search-input {
+  width: 300px;
+  margin-right: 10px;
+  border-radius: 15px;
+  border-color: #ff8000;
+}
+
+.modern-search-button {
+  border-radius: 15px;
+  border-color: #ff8000;
+  color: #ff8000;
+}
+
+.search-container {
+  margin-top: 30px;
+}
+
+.search-guide {
+  color: #777;
+  margin-top: 5px;
+}
+
+.search-suggestions {
+  position: absolute;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.search-suggestions div {
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-suggestions div:hover {
+  background-color: #f5f5f5;
+}
+
+
+
+ .game-container {
+    display: flex;
+    overflow-x: auto;
+    max-width: 100%; /* Sesuaikan dengan lebar yang diinginkan */
+    margin-top: 50px;
+  }
+
+  .game-entry {
+    flex: 0 0 auto;
+    width: 80px; /* Sesuaikan dengan lebar yang diinginkan */
+    text-align: center;
+    margin-right: 35px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #2F456C;
+    color: white;
+  }
+
+  .game-image {
+    width: 55px; /* Sesuaikan dengan lebar yang diinginkan */
+    height: 55px; /* Sesuaikan dengan tinggi yang diinginkan */
+    border-radius: 20%;
+  }
+
+  .game-button {
+    padding: 2px 4px;
+    color:white;
+    background-color: #ff8000;
+    border:2px #c0c0c0;
+    border-radius: 5px;
+  }
+
+
+
+
+
+
+
+
+
+/* CSS untuk judul "TEMUKAN SEACA" */
+.find-seaca {
+  text-align: center;
+  font-size: 1em;
+  margin-top: 40px;
+  color: #61dafb;
+  transition: transform 0.5s;
+}
+
+/* CSS untuk subjudul "Para Legenda Esports" */
+.legend-esports {
+  text-align: center;
+  color: #ff8000;
+  font-size: 1.5em;
+  margin-top: 10px;
+  transition: transform 0.5s;
+}
+
+/* CSS untuk gambar yang dapat di-scroll secara horizontal */
+.scrollable-images {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 20px;
+}
+
+.scrollable-images img {
+  max-width: 75%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s;
+  border: 2px #c0c0c0;
+}
+
+.scrollable-images img:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  .customer-support-section {
+    background-color:;
+    padding: 50px 0;
+    color: white;
+  }
+
+  .recommendation {
+    color: #ff8000;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+
+  .customer-contact {
+    text-align: center;
+  }
+
+  .contact-method {
+    border: 2px solid #ff8000;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px; /* Samakan margin untuk konten */
+    color: white;
+    background: linear-gradient(to right, #485563, #29323c);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 250px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .contact-method:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .contact-method i {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #ff8000;
+  }
+
+  .contact-method p {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* Baris baru jika tidak cukup lebar */
+    justify-content: center;
+  }
+
+  li {
+    flex: 0 0 calc(50% - 30px); /* Setiap elemen mengambil setengah lebar container, dikurangi margin */
+    margin: 15px;
+  }
+
+  .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap; /* Baris baru jika tidak cukup lebar */
+    justify-content: center;
+  }
+
+  .col-md-6 {
+    flex: 0 0 calc(50% - 30px); /* Setiap kolom mengambil setengah lebar container, dikurangi margin */
+    margin: 15px;
+  }
+
+  .customer-contact h3 {
+    font-size: 32px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+  }
+
+  .customer-contact h3::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 3px;
+    background-color: #ff8000;
+    bottom: 0;
+    left: 25%;
+    z-index: 0;
+    transition: left 0.1s ease-in-out;
+  }
+
+  .customer-contact h3:hover::after {
+    left: 0;
+  }
+
+
+
+
+
+
+
+   
+  </style>
+
+  <title>Website Top-up Game</title>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="assets/images/logo.png" 
+      style=" border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);"
+      alt="Logo" class="d-inline-block align-top">
+    </a>
+    <button class="btn btn-login ms-auto">Masuk</button>
+  </div>
+</nav>
+
+<!-- ... Kode lainnya ... -->
+
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="./assets/images/konten1.png" class="d-block w-100" alt="Slide 1">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/images/konten2.png" class="d-block w-100" alt="Slide 2">
+    </div>
+        <div class="carousel-item">
+      <img src="./assets/images/konten3.jpg" class="d-block w-100" alt="Slide 2">
+    </div>
+     <div class="carousel-item">
+      <img src="./assets/images/konten4.jpg" class="d-block w-100" alt="Slide 2">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/images/konten5.jpg" class="d-block w-100" alt="Slide 2">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/images/konten6.jpg" class="d-block w-100" alt="Slide 2">
+    </div>
+    <div class="carousel-item">
+      <img src="./assets/images/konten7.jpg" class="d-block w-100" alt="Slide 2">
+    </div>
+<div class="carousel-item">
+      <img src="./assets/images/konten8.jpg" class="d-block w-100" alt="Slide 2">
+    </div>
+    
+    <!-- Tambahkan gambar slide tambahan sesuai kebutuhan -->
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+
+
+
+<!-- ... Kode lainnya ... -->
+
+<section class="games-section">
+  <div class="container">
+    <h2 class="recommendation">Top-Up Games</h2>
+
+    <!-- Grid Interaktif -->
+    <div class="row">
+      <div class="col-md-3">
+        <!-- Filter lanjutan -->
+        <div class="filter-options">
+          <label for="sortBy">Sortir berdasarkan:</label>
+          <select id="sortBy">
+            <option value="harga">option</option>
+            <option value="popularitas">Popularitas</option>
+            <option value="rating">Rating</option>
+          </select>
+        </div>
+      </div>
+     
+     
+     
+     <div class="col-md-9">
+    <!-- Grid tampilan permainan -->
+    <div class="game-grid">
+        <!-- Game 1 -->
+        <div class="game-item" data-aos="fade-up">
+            <img src="./assets/images/pubg.png" alt="Game 1">
+            <h5>pubg mobile</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+
+        <!-- Game 2 -->
+        <div class="game-item" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 1">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+        
+        
+        <div class="game-item" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 1">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+        
+                <div class="game-item" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 1">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+        
+        
+               <div class="game-item" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 1">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+        
+        
+                <div class="game-item" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 1">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+        
+        
+                
+                <div class="game-item hidden" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 2">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+        
+        
+                
+                <div class="game-item hidden" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 2">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+        
+        
+               
+                <div class="game-item hidden" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 2">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+        
+        
+        
+                
+                <div class="game-item hidden" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 2">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+        
+        
+        
+                
+                <div class="game-item hidden" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 2">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+        </div>
+        
+        
+        
+               
+                <div class="game-item hidden" data-aos="fade-up">
+            <img src="./assets/images/mlbb.png" alt="Game 2">
+            <h5>mobile legends</h5>
+            <button class="btn btn-primary" onclick="topUp('pubg-mobile')">Top Up</button>
+            </div> 
+           </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 20px;">
+  <button id="showHiddenGames" style="background-color:#ff8000; font-size: larger; margin-right: 10px; border-radius: 10px;color:white;">Game lainnya</button>
+  <button id="hideHiddenGames" style="display: none; background-color:#ff8000; font-size: larger; margin-right: 10px; border-radius: 10px;color:white;">Game lainnya</button>
+</div>
+
+
+
+
+<div class="container">
+  <div class="search-container">
+    <form class="d-flex">
+      <input class="form-control me-2 modern-search-input" type="search" placeholder="Cari game..." aria-label="Search" id="search-input">
+      <button class="btn btn-outline-light modern-search-button" type="submit">Cari</button>
+    </form>
+   
+    <div class="search-suggestions" id="search-suggestions"></div>
+  </div>
+</div>
+</section>
+
+<h6 style="color:#ff8000;margin-top:20px;font-size:1.5em;">Game Populer</h6>
+<h1 style="color:#ffffff; font-size:2em; margin-top:10px;">trending sekarang</h1>
+
+
+<div class="game-container">
+
+  <!-- UniPin -->
+  <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="UniPin Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">UniPin</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div>
+
+  <!-- VNGGAMES -->
+  <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="VNGGAMES Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">VNGGAMES</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div>
+
+  <!-- Gravity Game Hub -->
+  <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="Gravity Game Hub Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">Gravity Game Hub</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div>
+
+  <!-- Garena -->
+  <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="Garena Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">Garena</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div>
+
+  <!-- Moonton -->
+
+  <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="Moonton Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">Moonton</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div>
+  
+  
+  <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="Moonton Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">Moonton</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div>
+  
+    <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="Moonton Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">Moonton</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div>
+  
+    <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="Moonton Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">Moonton</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div>
+  
+    <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="Moonton Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">Moonton</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div>
+  
+    <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="Moonton Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">Moonton</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div>
+  
+   <div class="game-entry">
+    <img src="./assets/images/mlbb.png" alt="Moonton Image" class="game-image">
+    <h3 style="margin-top: 5px; font-size: 10px;">Moonton</h3>
+    <button class="game-button" style="font-size: 10px;">TOP UP</button>
+  </div> 
+  <!-- ... (Tambahkan aturan border dan ukuran sesuai kebutuhan) -->
+
+</div>
+
+
+
+<!-- Elemen HTML untuk judul "TEMUKAN SEACA" -->
+<div class="find-seaca" data-aos="fade-up">
+  TEMUKAN SEACA
+</div>
+
+<!-- Elemen HTML untuk subjudul "Para Legenda Esports" -->
+<div class="legend-esports" data-aos="fade-up">
+  Para Legenda Esports
+</div>
+
+<!-- Elemen HTML untuk gambar yang dapat di-scroll secara horizontal -->
+<div class="scrollable-images" data-aos="fade-up">
+  <img src="./assets/images/esports1.png" alt="Image 1">
+  <img src="./assets/images/esports2.png" alt="Image 2">
+  <img src="./assets/images/esports3.png" alt="Image 3">
+  <img src="./assets/images/esports4.png" alt="Image 4">
+  <img src="./assets/images/esports5.png" alt="Image 5">
+  <img src="./assets/images/esports6.png" alt="Image 6">
+  <img src="./assets/images/esports7.png" alt="Image 7">
+    <img src="./assets/images/esports8.png" alt="Image 8">
+  <!-- Tambahkan gambar lainnya sesuai kebutuhan -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="customer-support-section" style="margin-top:80px; " >
+  <div class="container">
+    <h6 class="recommendation" style="font-size:1em;">Dukungan Pelanggan</h6>
+    <div class="customer-contact">
+      <h3 style="color:white;">Hubungi Kami</h3>
+      <ul>
+        <li>
+          <div class="contact-method">
+            <i class="fas fa-comment" style="color:white;"></i>
+            <p>Messenger</p>
+          </div>
+        </li>
+        <li>
+          <div class="contact-method">
+            <i class="fab fa-whatsapp" style="color:green;"></i>
+            <p>Whatsapp</p>
+          </div>
+        </li>
+        <li>
+          <div class="contact-method">
+            <i class="fas fa-phone" style="color:blue;"></i>
+            <p>Telepon</p>
+          </div>
+        </li>
+        <li>
+          <div class="contact-method">
+            <i class="fas fa-envelope" style="color:white;"></i>
+            <p>Email</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Elemen HTML untuk konten "BERLANGGANAN" dengan latar belakang #ff8000 -->
+<div class="subscription-content" style="background-color: #ff8000; padding: 50px; border-radius: px;">
+
+  <!-- Judul "BERLANGGANAN" -->
+  <h2 style="color: #ffffff; font-size: 2em; text-align: center; margin-bottom: 20px;">BERLANGGANAN</h2>
+
+  <!-- Teks penawaran -->
+  <h5 style="font-size: 1em; text-align: center; margin-bottom: 20px; color:#ffffff;">Dapatkan Penawaran Terbaik Sekarang!</h5>
+
+  <!-- Ikon media sosial dengan FontAwesome (diperbesar, dengan border dan margin) -->
+  <div class="social-icons" style="text-align: center; display: flex; justify-content: center;">
+    <i class="fab fa-facebook-f" style="color: #1877f2; font-size: 2em; margin: 0 15px; padding: 10px; border: 2px solid #ffffff; border-radius: 20%; background-color:white;"></i>
+    <i class="fab fa-instagram" style="color: #c32aa3; font-size: 2em; margin: 0 15px; padding: 10px; border: 2px solid #ffffff; border-radius: 20%; background-color:white;"></i>
+    <i class="fab fa-youtube" style="color: #ff0000; font-size: 2em; margin: 0 15px; padding: 10px; border: 2px solid #ffffff; border-radius: 20%; background-color:white;"></i>
+    <i class="fab fa-tiktok" style="color: #69c9d0; font-size: 2em; margin: 0 15px; padding: 10px; border: 2px solid #ffffff; border-radius: 20%; background-color:black;"></i>
+    <i class="fab fa-twitter" style="color: #1da1f2; font-size: 2em; margin: 0 15px; padding: 10px; border: 2px solid #ffffff; border-radius: 20%; background-color:white;"></i>
+  </div>
+</div>
+
+
+
+
+<style>
+  /* CSS untuk konten di tengah atas logo dan tulisan */
+  .centered-content {
+    text-align: center;
+    margin-top: 50px;
+    background-color: #000033;
+    border: 1px solid #333;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  /* CSS untuk logo di tengah */
+  .custom-logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 200px; /* Sesuaikan ukuran logo */
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  }
+
+  /* CSS untuk tulisan di bawah logo */
+  .content-subtitle {
+    color: #ffffff;
+    font-size: 16px;
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+
+  /* CSS untuk daftar link */
+  .content-navigation {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content-navigation li {
+    margin: 0 15px;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .content-navigation li i {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  .content-navigation li:hover {
+    transform: scale(1.1);
+  }
+</style>
+
+  
+  
+
+
+<!-- Elemen HTML untuk konten di tengah atas logo dan tulisan -->
+<div class="centered-content">
+
+  <!-- Logo di tengah -->
+  <img src="./assets/images/logo.png" alt="Logo" class="custom-logo">
+
+  <!-- Tulisan di bawah logo -->
+  <p class="content-subtitle">
+    ANDRAX merupakan penyedia layanan pembayaran (PSP) terkemuka yang memfokuskan layanannya untuk game online dan produk digital lainnya yang tersebar di seluruh dunia.
+  </p>
+
+   <ul class="content-navigation">
+    <li><i class="fas fa-map-marker-alt" style="color: #3498db;"></i> Peta Situs</li>
+    <li><i class="fas fa-bolt" style="color: #f39c12;"></i> Flash Top-Up</li>
+    <li><i class="fas fa-ticket-alt" style="color: #9b59b6;"></i> Voucher</li>
+    <li><i class="fas fa-gamepad" style="color: #2ecc71;"></i> Game Lainnya</li>
+    <li><i class="fas fa-users" style="color: #e74c3c;"></i> AndraX Affiliates Program</li>
+    <li><i class="fas fa-question-circle" style="color: #f39c12;"></i> FAQ</li>
+    <li><i class="fas fa-headset" style="color: #3498db;"></i> Dukungan Pelanggan</li>
+    <li><i class="fas fa-star" style="color: #f1c40f;"></i> Penukaran Poin</li>
+    <li><i class="fas fa-newspaper" style="color: #3498db;"></i> Berita</li>
+    <li><i class="fas fa-gift" style="color: #e74c3c;"></i> Promo dan Acara</li>
+    <li><i class="fas fa-briefcase" style="color: #2ecc71;"></i> Karir</li>
+    <li><i class="fas fa-building" style="color: #9b59b6;"></i> Korporasi</li>
+    <li><i class="fas fa-credit-card" style="color: #3498db;"></i> Saluran Pembayaran</li>
+    <li><i class="fas fa-handshake" style="color: #f39c12;"></i> Program Kemitraan</li>
+    <li><i class="fas fa-gamepad" style="color: #2ecc71;"></i> SEACA eSports & Community</li>
+  </ul>
+
+<!-- Teks "Pembayaran" -->
+<div class="payment-text" style="text-align: center; margin-top: 50px; color: #ff8000; font-size: 18px;">
+  Pembayaran
+</div>
+
+<!-- Gambar bergerak secara horizontal -->
+<div class="horizontal-scroll">
+  <img src="./assets/images/dana.png" alt="Payment 1">
+  <img src="./assets/images/ovo.png" alt="Payment 2">
+  <img src="./assets/images/shope.png" alt="Payment 3">
+   <img src="./assets/images/gopay.png" alt="Payment 4">
+    <img src="./assets/images/konten1.png" alt="Payment 5">
+    
+  <!-- Tambahkan gambar lainnya sesuai kebutuhan -->
+</div>
+
+<style>
+  /* CSS untuk teks "Pembayaran" */
+  .payment-text {
+    text-align: center;
+    margin-top: 50px;
+    color: #ffffff;
+    font-size: 18px;
+  }
+
+  /* CSS untuk gambar yang bergerak secara horizontal */
+  .horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    max-width: 100%;
+    margin-top: 20px;
+    padding-bottom: 40px;
+  }
+
+  .horizontal-scroll img {
+    width: 60px;
+    height: auto;
+    margin-right: 25px;
+    border-radius: 8px;
+    object-fit: cover;
+    animation: scroll 10s linear infinite;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>
+
+
+
+
+</div>
+
+
+
+
+
+<div class="contact-content">
+  <p class="address">
+    suka  gue masalahh buat  loe,<br>
+    Kel. Petir, Kec. suka saya, Kota lampung, Prov. xxxxxxxx
+  </p>
+  <p class="contact-details">
+    Telepon: (021)xxxxxxxxx<br>
+    Direktorat Jenderal Perlindungan Konsumen dan Tertib Niaga<br>
+    Kementerian Perdagangan Republik Indonesia<br>
+    WhatsApp: xxxxxxx
+  </p>
+  <p class="copyright">
+    © 2023 Andrax. Semua Hak Cipta
+  </p>
+  <p class="terms">
+    Website Terms and Conditions | User Terms & Conditions | Privacy Policy
+  </p>
+  <p class="country">
+    Indonesia
+  </p>
+</div>
+
+<style>
+  /* CSS untuk tata letak tulisan */
+  .contact-content {
+    text-align: center;
+    margin-top: -50px;
+    padding: 20px;
+    background-color: #000033;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+
+  .address, .contact-details, .copyright, .terms, .country {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  .address {
+    font-weight: bold;
+  }
+
+  .copyright, .terms, .country {
+    font-size: 12px;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="fixed-footer">
+  <!-- Icons berjejer horizontal -->
+  <div class="footer-icons">
+    <i class="fas fa-home" style="color: #ff8000; font-size: 30px;"></i>
+    <i class="fas fa-gift" style="color: #e74c3c; font-size: 30px;"></i>
+    <i class="fas fa-search" style="color: #2ecc71; font-size: 30px;"></i>
+    <i class="fas fa-gamepad" style="color: #f39c12; font-size: 30px;"></i>
+    <i class="fas fa-bars" style="color: #ecf0f1; font-size: 30px;"></i>
+  </div>
+</div>
+
+<style>
+  /* CSS untuk footer */
+  .fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(45deg, #6600cc, #000033); /* Gradien modern */
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease-in-out;
+  }
+
+  /* CSS untuk icons berjejer horizontal */
+  .footer-icons {
+    font-size: 30px;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .footer-icons i {
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .footer-icons i:hover {
+    transform: scale(1.2);
+    color: #ffd700; /* Warna kuning untuk highlight saat hover */
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+</style>
+
+//fa fa-bars //
+<div class="slide-content">
+  <div class="content-wrapper">
+    <div class="company-info">
+      <i class="fas fa-building" style="color: #3498db; font-size: 36px;"></i>
+      <h2>ANDRAX</h2>
+    </div>
+    <ul class="menu-list">
+      <li><i class="fas fa-tachometer-alt" style="color: #27ae60;"></i> Dashboard</li>
+      <li><i class="fas fa-shopping-cart" style="color: #e74c3c;"></i> Orders</li>
+      <li><i class="fas fa-box" style="color: #f39c12;"></i> Products</li>
+      <li><i class="fas fa-users" style="color: #9b59b6;"></i> Customers</li>
+      <li><i class="fas fa-chart-bar" style="color: #3498db;"></i> Reports</li>
+
+
+          <li><i class="far fa-calendar" style="color: #f39c12;"></i> Current Month</li>
+          <li><i class="far fa-calendar-alt" style="color: #e74c3c;"></i> Last Quarter</li>
+          <li><i class="fas fa-share-alt" style="color: #27ae60;"></i> Social Engagement</li>
+      </ul>
+      </li>
+      <li><i class="fas fa-cogs" style="color: #e67e22;"></i> Settings</li>
+      <li><i class="fas fa-sign-out-alt" style="color: #c0392b;"></i> Sign Out</li>
+    </ul>
+  </div>
+  <button class="close-btn" style="background-color: #ff8000;"><i class="fas fa-times"></i> Tutup</button>
+</div>
+  
+
+
+
+
+<style>
+/* Gaya untuk konten slide */
+.slide-content {
+  position: fixed;
+  top: 35%;
+  right: -80%;
+  height: 60%;
+  width: 300px;
+  background: linear-gradient(45deg, #00004d, #000033);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: right 0.3s ease-in-out;
+  border-radius: 15px;
+}
+
+.content-wrapper {
+  padding: 20px;
+  color: #ecf0f1;
+  width: 100%;
+}
+
+.company-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.company-info i {
+  font-size: 36px;
+  margin-right: 15px;
+  color: #fff;
+}
+
+.company-info h2 {
+  font-size: 1.8em;
+  margin: 0;
+  color: #fff;
+}
+
+.menu-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-list li i {
+  font-size: 24px;
+  margin-right: 20px;
+  color: #fff;
+}
+
+.menu-list li span {
+  font-size: 1em;
+  color: #ecf0f1;
+}
+
+.menu-list li:hover {
+  transform: translateX(10px);
+}
+
+/* Tombol tutup di ujung atas pojok */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: ;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 2px 4px; /* Menyesuaikan padding */
+  font-size: 13px; /* Menyesuaikan ukuran font */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+  background-color: #c0392b;
+}
+
+</style>
+
+<!-- Tambahkan ini di atas skrip JavaScript yang telah diberikan sebelumnya -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const barsIcon = document.querySelector(".fas.fa-bars");
+    const closeBtn = document.querySelector(".close-btn");
+    const contentToShow = document.querySelector(".slide-content");
+
+    closeBtn.addEventListener("click", function () {
+      contentToShow.style.right = "-100%";
+    });
+
+    barsIcon.addEventListener("click", function () {
+      contentToShow.style.right = "0";
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+<!-- Script untuk Galeri Slider -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const galleryWrapper = document.querySelector('.gallery-wrapper');
+    let translateValue = 0;
+
+    setInterval(() => {
+      translateValue -= 100; // Sesuaikan dengan ukuran gambar dan jarak antar gambar
+      galleryWrapper.style.transform = `translateX(${translateValue}%)`;
+
+      // Reset ke nilai awal setelah selesai slide semua gambar
+      if (translateValue < -100 * (galleryWrapper.children.length - 1)) {
+        translateValue = 0;
+        galleryWrapper.style.transition = 'none'; // Hilangkan transisi agar kembali langsung tanpa animasi
+        galleryWrapper.style.transform = `translateX(${translateValue}%)`;
+        setTimeout(() => {
+          galleryWrapper.style.transition = 'transform 1s ease-in-out'; // Setel kembali transisi setelah reset
+        }, 0);
+      }
+    }, 3000); // Sesuaikan dengan durasi slide (dalam milidetik)
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Jangan lupa untuk menginisialisasi Carousel dengan JavaScript
+  var myCarousel = document.getElementById('carouselExample');
+  var carousel = new bootstrap.Carousel(myCarousel, {
+    wrap: true // Biarkan slide melingkar
+  });
+</script>
+
+ <script>
+        function topUp(className) {
+            // Fungsi yang akan dipanggil saat tombol top up ditekan
+            alert("Top Up button pressed for class: " + className);
+        }
+    </script>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+<!-- ... Kode lainnya ... -->
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+
+<script>
+const searchInput = document.getElementById('search-input');
+const searchSuggestions = document.getElementById('search-suggestions');
+
+searchInput.addEventListener('input', () => {
+  const inputText = searchInput.value.toLowerCase();
+  const suggestions = ["Mobile Legends", "Top Up PUBG", "Voucher MLBB", "Game Lainnya"];
+
+  const filteredSuggestions = suggestions.filter(suggestion =>
+    suggestion.toLowerCase().includes(inputText)
+  );
+
+  searchSuggestions.innerHTML = filteredSuggestions
+    .map(suggestion => `<div onclick="selectSuggestion('${suggestion}')">${suggestion}</div>`)
+    .join('');
+});
+
+function selectSuggestion(selectedSuggestion) {
+  searchInput.value = selectedSuggestion;
+  searchSuggestions.innerHTML = '';
+}
+</script>
+
+
+
+
+<script>
+  var hiddenGames = document.querySelectorAll('.game-item.hidden');
+  var showButton = document.getElementById('showHiddenGames');
+  var hideButton = document.getElementById('hideHiddenGames');
+
+  // Tampilkan game bunyi dengan efek animasi menggunakan Anime.js
+  showButton.addEventListener('click', function() {
+    hiddenGames.forEach(function(game, index) {
+      anime({
+        targets: game,
+        opacity: [0, 1],
+        translateY: [20, 0],
+        easing: 'easeInOutQuad',
+        duration: 500,
+        delay: index * 100 // Menambahkan penundaan untuk efek animasi
+      });
+      game.classList.remove('hidden');
+    });
+    showButton.style.display = 'none'; 
+    hideButton.style.display = 'block';
+  });
+
+  // Sembunyikan game yang sudah ditampilkan dengan efek animasi menggunakan Anime.js
+  hideButton.addEventListener('click', function() {
+    hiddenGames.forEach(function(game, index) {
+      anime({
+        targets: game,
+        opacity: [1, 0],
+        translateY: [0, 20],
+        easing: 'easeInOutQuad',
+        duration: 500,
+        delay: index * 100 // Menambahkan penundaan untuk efek animasi
+      });
+      game.classList.add('hidden');
+    });
+    hideButton.style.display = 'none';
+    showButton.style.display = 'block';
+  });
+</script>
+
+
+
+
+</body>
+</html>
